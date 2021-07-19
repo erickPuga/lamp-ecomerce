@@ -19,3 +19,7 @@
     name: git
     state: present
     update_cache: yes
+
+- name: Disable SELinux
+  selinux:
+    state: disabled

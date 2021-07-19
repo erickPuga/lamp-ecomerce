@@ -7,7 +7,7 @@
     force: yes
 
 - name: Change DB IP in index.php
-  shell: sed -i 's/172.20.1.101/192.168.0.12/g' /var/www/html/index.php
+  shell: sed -i 's/172.20.1.101/10.1.0.8/g' /var/www/html/index.php
 
 - name: Change Apache config to point .php file
   shell: sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
