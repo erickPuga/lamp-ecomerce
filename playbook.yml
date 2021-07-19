@@ -1,0 +1,24 @@
+---
+#- name: Install git and firewalld  
+#  hosts: all
+#  become: true
+#  roles: 
+#    - common
+
+- name: Install and configure MariaDB
+  hosts: target02
+  become: true
+  roles:
+    - mariadb
+
+- name: Install Apache, PHP and configure website code
+  hosts: target01
+  become: true
+  roles:
+    - web-server
+
+- name: Deploy app
+  hosts: target01
+  become: true
+  roles:
+    - deploy

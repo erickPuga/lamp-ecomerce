@@ -1,0 +1,18 @@
+---
+
+- name: Git clone project
+  git:
+    repo: https://github.com/kodekloudhub/learning-app-ecommerce.git
+    dest: /var/www/html
+    force: yes
+
+- name: Change DB IP in index.php
+  shell: sed -i 's/172.20.1.101/192.168.0.12/g' /var/www/html/index.php
+
+- name: Change Apache config to point .php file
+  shell: sed -i 's/index.html/index.php/g' /etc/httpd/conf/httpd.conf
+
+- name: Restart Apache
+  service:
+    name: httpd
+    state: restarted

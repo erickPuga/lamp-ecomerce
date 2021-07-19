@@ -1,0 +1,21 @@
+---
+# tasks file for common
+- name: ensure firewalld is installed
+  yum: name=firewalld state=present
+  tags: firewalld
+
+- name: ensure firewalld is enabled and started
+  service: name=firewalld enabled=yes state=started
+  tags: firewalld
+
+- name: get actual firewalld default zone
+  command: /bin/firewall-cmd --get-default-zone
+  register: defaultzone
+  changed_when: false
+  tags: firewalld
+
+- name: Install git
+  yum: 
+    name: git
+    state: present
+    update_cache: yes
